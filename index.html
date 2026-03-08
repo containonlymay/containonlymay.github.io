@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/style.css">
+    <title>Wikipedia Pushups</title>
+</head>
+
+<body>
+    <header>
+        <h1>Wikipedia Pushups</h1>
+    </header>
+
+    <div class="container">
+        <div class="viewport">
+            <iframe id="WikiDisplay"></iframe>
+            <a id="Hyperlink" href="index.html">
+                <p id="LinkDisplay">
+                    ? Link
+                </p>
+            </a>
+        </div>
+
+        <div class="aside">
+            <button class="Reroll" onclick="rerollPage(1)" id="RerollButton">
+                Reroll
+            </button>
+
+            <div class="Counter">
+                <button onclick="changeCount(-1)">-</button>
+                <h2 id="Counter">0</h2>
+                <button onclick="changeCount(1)">+</button>
+            </div>
+
+            <div class="LinkHistory">
+                <p>History</p>
+
+                <ol id="LinkHistList" reversed>
+
+                </ol>
+            </div>
+
+            <div class="SaveRun">
+                <p>Submit Run</p>
+                <input type="text" id="RunNameInput" placeholder="Enter your run name:">
+
+                <button class="SubmitButton" onclick="saveGame()" id="SubmitButton">
+                    Submit
+                </button>
+            </div>
+
+            <div class="Leaderboard">
+                <p>Leaderboard</p>
+
+                <div class="ScrollContainer">
+                    <table class="LeaderboardTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Date</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="LeaderboardBody">
+                            <tr>
+                                <td colspan="3" style="text-align: center;"">
+                                    No data found!
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+
+            <div class=" Settings">
+                <p>Settings</p>
+
+                <select name="Language" id="Language" onchange="changeLanguage(this.value)">
+                    <option value="en">English</option>
+                    <option value="zh">Chinese</option>
+                    <option value="fr">French</option>
+                    <option value="es">Spanish</option>
+                    <option value="ru">Russian</option>
+                    <option value="de">German</option>
+                    <option value="it">Italian</option>
+                    <option value="ja">Japanese</option>
+                </select>
+
+                <input type="text" id="WordFilter">
+            </div>
+        </div>
+
+        <script src="assets/app.js"></script>
+</body>
+
+</html>
