@@ -121,6 +121,16 @@ header h1 {
     border-radius: 10px;
 }
 
+.FullCounter > button {
+    border-radius: 50px;
+    font-size: 10px;
+    font-weight: normal;
+    background-color: transparent;
+    border: 2px solid rgb(79, 105, 255);
+    color: white;
+    cursor: pointer;
+}
+
 .Counter button {
     display: flex;
     justify-content: center;
@@ -136,11 +146,11 @@ header h1 {
     cursor: pointer;
 }
 
-.Counter button:hover {
+.FullCounter button:hover {
     border: 2px solid rgb(42, 58, 148);
 }
 
-.Counter button:active {
+.FullCounter button:active {
     border: 2px solid rgb(24, 36, 106);
     color: rgb(110, 110, 110);
 }
