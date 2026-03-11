@@ -28,13 +28,16 @@
                 Reroll
             </button>
 
-            <div class="Counter">
-                <button onclick="changeCount(-1)">-</button>
-                <h2 id="Counter">0</h2>
-                <button onclick="changeCount(1)">+</button>
-            </div>
+            <div class="FullCounter">
+                <div class="Counter">
+                    <button onclick="changeCount(-1)">-</button>
+                    <h2 id="Counter">0</h2>
+                    <button onclick="changeCount(1)">+</button>
+                </div>
 
-            <button onclick="skipPage()">Don't count this page</button>
+                <button onclick="skipPage()">Don't count this page</button>
+            </div>
+            
 
             <div class="LinkHistory">
                 <p>History</p>

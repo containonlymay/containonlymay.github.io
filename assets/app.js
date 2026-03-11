@@ -177,7 +177,7 @@ function saveGame() {
 
     PageCount = 0
     Counter.textContent = PageCount
-    LinkHistList.replaceChildren()
+    LinkHistList.innerHTML = "" //trying this again instead of replaceChildren()
 
     const finalURL =`https://${CurrentLang}.wikipedia.org`
     displayURL(finalURL)
