@@ -132,6 +132,12 @@ function saveGame() {
         errorMessage = "Invalid Score! Make sure you roll at least once."
     }
 
+    if (errorMessage) {
+        alert(errorMessage)
+        return
+    }
+    
+
     date = new Date()
     year = date.getFullYear()
     month = date.toLocaleString("default", { month: "short" })
