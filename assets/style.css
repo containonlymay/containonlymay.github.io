@@ -106,7 +106,7 @@ header h1 {
     overflow: visible;
     background-color: #4a4851;
     border-radius: 10px;
-    height: 12%;
+    height: 125px;
     width: 300px;
 }
 
@@ -117,7 +117,7 @@ header h1 {
     justify-content: center;
     overflow: visible;
     width: 300px;
-    height: 80%;
+    height: 50%;
     background-color: #4a4851;
     border-radius: 10px;
 }
