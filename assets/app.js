@@ -21,6 +21,21 @@ function displayURL(finalURL) {
     Hyperlink.href = shownURL
 }
 
+function addHistory(finalURL) {
+    const listItem = document.createElement("li")
+    const link = document.createElement("a")
+    link.href = finalURL
+    link.textContent = finalURL
+    LinkHistList.insertBefore(listItem, LinkHistList.firstChild)
+    listItem.appendChild(link)
+
+    /*
+        <li>
+            <a href="URL"> URL </a>
+        </li>
+    */
+}
+
 function changeCount(value) {
     PageCount += value
     if (PageCount < 0) {PageCount = 0}
@@ -71,15 +86,17 @@ async function rerollPage(increment) {
 
     if (finalURL) {
         displayURL(finalURL)
-
-        const listItem = document.createElement("li")
-        const link = document.createElement("a")
-        link.href = finalURL
-        link.textContent = finalURL
-        LinkHistList.insertBefore(listItem, LinkHistList.firstChild)
-        listItem.appendChild(link)
-
+        addHistory(finalURL)
         changeCount(increment)
+    }
+}
+
+async function skipPage() {
+     const finalURL = await getURL()
+
+    if (finalURL) {
+        LinkHistList.firstChild.remove()
+        displayURL(finalURL)
     }
 }
 
@@ -137,7 +154,6 @@ function saveGame() {
         return
     }
     
-
     date = new Date()
     year = date.getFullYear()
     month = date.toLocaleString("default", { month: "short" })
