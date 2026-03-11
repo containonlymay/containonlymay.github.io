@@ -8,7 +8,7 @@ const RunNameInput = document.getElementById("RunNameInput")
 const LeaderboardBody = document.getElementById("LeaderboardBody")
 const Hyperlink = document.getElementById("Hyperlink")
 const Language = document.getElementById("Language")
-const WordFilter = document.getElementById("WordFilter")
+// const WordFilter = document.getElementById("WordFilter")
 
 var CurrentLang = "en"
 var PageCount = 0
@@ -97,6 +97,7 @@ async function skipPage() {
     if (finalURL) {
         LinkHistList.firstChild.remove()
         displayURL(finalURL)
+        addHistory(finalURL)
     }
 }
 
