@@ -38,22 +38,8 @@ header h1 {
 }
 
 .viewport iframe {
-    height: 90%;
+    height: 95%;
     border-radius: 5px;
-}
-
-.viewport p {
-    display: flex;
-    color: white;
-    font-size: large;
-    flex-grow: 1;
-    align-items: center;
-    padding: 20px;
-    margin: 20px 10px 20px 10px;
-}
-
-.viewport p:hover {
-    color: rgb(110, 182, 255);
 }
 
 .viewport a {
@@ -61,6 +47,19 @@ header h1 {
     text-decoration: none;
     border: 2px solid white;
     border-radius: 5px;
+    flex: 1;
+}
+
+.viewport p {
+    display: flex;
+    color: white;
+    font-size: large;
+    align-items: center;
+    margin: 10px;
+}
+
+.viewport p:hover {
+    color: rgb(110, 182, 255);
 }
 
 .aside {
