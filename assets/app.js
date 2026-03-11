@@ -14,7 +14,7 @@ var CurrentLang = "en"
 var PageCount = 0
 
 function displayURL(finalURL) {
-    shownURL = new URL(finalURL)
+    const shownURL = new URL(finalURL)
 
     WikiDisplay.src = shownURL
     LinkDisplay.textContent = shownURL
@@ -28,7 +28,7 @@ function changeCount(value) {
 }
 
 function changeLanguage(value) {
-    CurrentLang = value
+    let CurrentLang = value
 
     const finalURL = `https://${CurrentLang}.wikipedia.org`
     displayURL(finalURL)
@@ -104,20 +104,15 @@ function setLocalData() {
 
         keys.forEach(key => {
             const data = JSON.parse(localStorage.getItem(key))
-
             const row = document.createElement("tr")
 
-            const nameCell = document.createElement("td")
-            nameCell.textContent = key
-            row.appendChild(nameCell)
+            const rowData = [key, data["Date"], data["Score"]]
 
-            const dateCell = document.createElement("td")
-            dateCell.textContent = data["Date"]
-            row.appendChild(dateCell)
-
-            const scoreCell = document.createElement("td")
-            scoreCell.textContent = data["Score"]
-            row.appendChild(scoreCell)
+            rowData.forEach(item => {
+                const dataCell = document.createElement("td")
+                dataCell.textContent = item
+                row.appendChild(dataCell)
+            })
 
             LeaderboardBody.appendChild(row)
 
@@ -127,14 +122,14 @@ function setLocalData() {
 }
 
 function saveGame() {
-    RunName = RunNameInput.value;
+    let RunName = RunNameInput.value;
+    let errorMessage
+
     if (!RunName || localStorage.getItem(RunName)) {
-        alert("Invalid Run Name! Make sure the name is not duplicate.")
-        return
+        errorMessage = "Invalid Run Name! Make sure the name is not duplicate."
     }
-    if (PageCount < 0) {
-        alert("Score cannot be negative!")
-        return
+    if (PageCount <= 0) {
+        errorMessage = "Invalid Score! Make sure you roll at least once."
     }
 
     date = new Date()
