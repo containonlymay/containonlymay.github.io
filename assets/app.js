@@ -126,7 +126,7 @@ async function rerollPage(increment) {
 }
 
 async function skipPage() {
-     const finalURL = await getURL()
+    const finalURL = await getURL()
 
     if (finalURL) {
         LinkHistList.firstChild.remove()
@@ -199,7 +199,7 @@ function saveGame() {
 
     fullDate = `${month} ${day}, ${year}; ${hours}:${minutes}:${seconds}`
 
-    var data = {
+    let data = {
         "Date": fullDate,
         "Score": String(PageCount),
         "FinalURL": LinkDisplay.textContent
