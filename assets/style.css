@@ -326,3 +326,7 @@ header h1 {
 .Settings select option {
     color: black;
 }
+
+.Settings input::placeholder {
+    color: black;
+}

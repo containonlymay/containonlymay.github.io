@@ -95,7 +95,13 @@
                     <option value="ja">Japanese</option>
                 </select>
 
-                <!-- <input type="text" id="WordFilter"> not done -->
+                <input
+                placeholder="Word filter"
+                title="Random pages with a word in this list won't appear in your wikipedia runs. Separate them with commas. Example: word1, word2, word3"
+                type="text"
+                id="WordFilter"
+                oninput="changeFilterList(this.value)"
+                >
             </div>
         </div>
 

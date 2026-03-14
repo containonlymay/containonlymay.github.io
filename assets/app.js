@@ -8,10 +8,18 @@ const RunNameInput = document.getElementById("RunNameInput")
 const LeaderboardBody = document.getElementById("LeaderboardBody")
 const Hyperlink = document.getElementById("Hyperlink")
 const Language = document.getElementById("Language")
-// const WordFilter = document.getElementById("WordFilter")
+const WordFilter = document.getElementById("WordFilter")
 
 var CurrentLang = "en"
+var FilteredList = []
 var PageCount = 0
+
+function changeFilterList(sentence) {
+    FilteredList = sentence
+    .trim()
+    .split(",")
+    .map(value => value.trim().toLowerCase())
+}
 
 function displayURL(finalURL) {
     const shownURL = new URL(finalURL)
@@ -55,21 +63,46 @@ async function getURL() {
     debounce = true
 
     const apiEndPoint = `https://${CurrentLang}.wikipedia.org/w/api.php`
+
     const params = new URLSearchParams({
         action: "query",
-        format: "json",
         list: "random",
-        rnlimit: "1",
+        format: "json",
+        rnlimit: "5",
         rnnamespace: "0",
         origin: "*"
     })
 
     try {
-        const response = await fetch(`${apiEndPoint}?${params.toString()}`)
-        const data = await response.json()
-        const page = data.query.random[0]
-        const pageTitle = page.title.replace(/ /g, "_")
+        function isPageValid(pageTitle) {
+            return !FilteredList.some(word => pageTitle.includes(word))
+        }
 
+        var finalPage
+        var attempts = 0
+
+        while (!finalPage && attempts < 3) {
+            const response = await fetch(`${apiEndPoint}?${params.toString()}`)
+            const data = await response.json()
+            const pages = data.query.random
+
+            pages.forEach(page => {
+                const pageTitle = page.title.toLowerCase()
+                if (isPageValid(pageTitle)) {
+                    finalPage = page
+                }
+            })
+
+            attempts++
+        }
+
+        if (!finalPage) {
+            alert(`After ${attempts} attemps and ${parseInt(params.get("rnlimit")) * attempts} pages, no valid page was found. Please retry.`)
+            debounce = false
+            return
+        }
+
+        const pageTitle = finalPage.title.replace(/ /g, "_")
         const finalURL = `https://${CurrentLang}.wikipedia.org/wiki/${pageTitle}`
 
         debounce = false
@@ -178,7 +211,7 @@ function saveGame() {
 
     PageCount = 0
     Counter.textContent = PageCount
-    LinkHistList.innerHTML = "" //trying this again instead of replaceChildren()
+    LinkHistList.innerHTML = ""
 
     const finalURL =`https://${CurrentLang}.wikipedia.org`
     displayURL(finalURL)
