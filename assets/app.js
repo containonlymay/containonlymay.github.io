@@ -70,6 +70,7 @@ async function getURL() {
         format: "json",
         rnlimit: "5",
         rnnamespace: "0",
+        rnminsize: "1250",
         origin: "*"
     })
 
@@ -78,8 +79,8 @@ async function getURL() {
             return !FilteredList.some(word => pageTitle.includes(word))
         }
 
-        var finalPage
-        var attempts = 0
+        let finalPage
+        let attempts = 0
 
         while (!finalPage && attempts < 3) {
             const response = await fetch(`${apiEndPoint}?${params.toString()}`)
