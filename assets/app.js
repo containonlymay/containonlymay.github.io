@@ -51,7 +51,7 @@ function changeCount(value) {
 }
 
 function changeLanguage(value) {
-    let CurrentLang = value
+    CurrentLang = value
 
     const finalURL = `https://${CurrentLang}.wikipedia.org`
     displayURL(finalURL)
